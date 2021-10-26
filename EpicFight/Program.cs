@@ -8,11 +8,37 @@ namespace EpicFight
         {
             string hero = PickHero();
             string villain = PickVillain();
+            int heroHP = GenerateHP(hero);
+            int villainHP = GenerateHP(villain);
+
             Console.WriteLine($"{hero} will fight {villain}.");
 
             string heroWeapon = PickWeapon();
             string villainWeapon = PickWeapon();
             Console.WriteLine($"{hero} picked {heroWeapon}. {villain} picked {villainWeapon}.");
+        }
+
+        private static int Hit(string characterOne, string characterTwo, string someWeapon)
+        {
+            Random rnd = new Random();
+            int strike = rnd.Next(0, someWeapon.Length / 2);
+
+            Console.WriteLine($"{characterOne} hit {strike}.");
+            if(strike == someWeapon.Length / 2)
+            {
+                Console.WriteLine($"Awesome! {characterOne} made a critical hit!");
+            } 
+            else if (strike == 0)
+            {
+                Console.WriteLine($"{characterTwo} dodged the attack!");
+            }
+
+        }
+
+        private static int GenerateHP(string someName)
+        {
+            Random rnd = new Random();
+            return rnd.Next(someName.Length, someName.Length + 10);
         }
 
         private static string PickWeapon()
