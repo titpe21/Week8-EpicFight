@@ -16,6 +16,23 @@ namespace EpicFight
             string heroWeapon = PickWeapon();
             string villainWeapon = PickWeapon();
             Console.WriteLine($"{hero} picked {heroWeapon}. {villain} picked {villainWeapon}.");
+
+            while(heroHP > 0 && villainHP > 0)
+            {
+                heroHP = heroHP - Hit(villain, hero, villainWeapon);
+                villainHP = villainHP - Hit(hero, villain, heroWeapon);
+
+            }
+
+            if (heroHP <= 0)
+            {
+                Console.WriteLine("Dark side wins!");
+            }
+            else
+            {
+                Console.WriteLine($"{hero} saves the day!");
+            }
+
         }
 
         private static int Hit(string characterOne, string characterTwo, string someWeapon)
@@ -32,6 +49,9 @@ namespace EpicFight
             {
                 Console.WriteLine($"{characterTwo} dodged the attack!");
             }
+
+            return strike;
+
 
         }
 
